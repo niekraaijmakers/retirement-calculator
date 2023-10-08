@@ -12,9 +12,9 @@ export interface Results {
   totalExpectedRetirementSavings: number;
   totalExpectedRetirementIncomeMonthly: number;
 
-  depositedSavingsTable:          { [key: number] : number };
-  totalAccumulatedSavingsTable:   { [key: number] : number };
-  totalDepositedSavingsTable:     { [key: number] : number };
+  yearlyDepositedSavings:    number[];
+  totalAccumulatedSavings:   number[];
+  totalDepositedSavings:     number[];
 }
 
 export default interface Calculator {

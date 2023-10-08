@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgChartsModule, NgChartsConfiguration } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import MockCalculator from "./services/impl/mock-calculator";
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +12,8 @@ import MockCalculator from "./services/impl/mock-calculator";
 
   imports: [
     NgChartsModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
     MockCalculator,
