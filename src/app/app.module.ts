@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import { NgChartsModule, NgChartsConfiguration } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import MockCalculator from "./services/impl/mock-calculator";
 
@@ -12,10 +11,13 @@ import MockCalculator from "./services/impl/mock-calculator";
 
 
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    NgChartsModule,
+    BrowserModule
   ],
-  providers: [MockCalculator],
+  providers: [
+    MockCalculator,
+    { provide: NgChartsConfiguration, useValue: { generateColors: true }}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
