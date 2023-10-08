@@ -7,6 +7,7 @@ import Annotation from 'chartjs-plugin-annotation';
 import MockCalculator from "./services/impl/mock-calculator";
 import Calculator, {Results} from "./services/calculator";
 
+const WITHDRAWAL_RATE = 0.04;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,13 +22,10 @@ export class AppComponent {
     datasets: [],
   };
 
-
-  @ViewChild("variables") variables?: ElementRef;
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-
+  yearlyReturn: number = 8;
   inflationRate: number = 3;
-  private display: boolean = false;
 
   constructor(private calculator: MockCalculator) {
 
@@ -36,6 +34,7 @@ export class AppComponent {
 
     this.lineChartData = this.calcLineChartData();
   }
+
 
   private calcLineChartData(): ChartConfiguration['data'] {
 
@@ -79,46 +78,71 @@ export class AppComponent {
     }
   }
 
-  public lineChartOptions: ChartConfiguration['options'] = {
-    elements: {
-      line: {
-        tension: 0.5,
+  public get lineChartOptions(): ChartConfiguration['options'] {
+    const inflation = this.inflationRate;
+    return {
+      elements: {
+        line: {
+          tension: 0.5,
+        },
       },
-    },
-    scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
-      y: {
-        position: 'left',
+      scales: {
+        // We use this empty structure as a placeholder for dynamic theming.
+        y: {
+          position: 'left',
+        },
       },
-    },
-    plugins: {
-      legend: { display: true },
-      annotation: {
-        annotations: [
-          // {
-          //   type: 'line',
-          //   scaleID: 'x',
-          //   value: 7,
-          //   borderColor: 'orange',
-          //   borderWidth: 2,
-          //   label: {
-          //     display: true,
-          //     position: 'center',
-          //     color: 'orange',
-          //     content: 'LineAnno',
-          //     font: {
-          //       weight: 'bold',
-          //     },
-          //   },
-          // },
-        ],
-      },
+
+
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              let label = context.dataset.label || '';
+
+              if (label) {
+                label += ': ';
+              }
+              if (context.parsed.y !== null) {
+                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'CHF' }).format(context.parsed.y);
+
+                //todo: correct for inflation
+                label += 'inflatoin ' + inflation;
+                label += ' --- Monthly : ' + Math.floor(context.parsed.y * WITHDRAWAL_RATE / 12);
+              }
+
+              return label;
+            }
+          }
+        },
+        legend: { display: true },
+        annotation: {
+          annotations: [
+            // {
+            //   type: 'line',
+            //   scaleID: 'x',
+            //   value: 7,
+            //   borderColor: 'orange',
+            //   borderWidth: 2,
+            //   label: {
+            //     display: true,
+            //     position: 'center',
+            //     color: 'orange',
+            //     content: 'LineAnno',
+            //     font: {
+            //       weight: 'bold',
+            //     },
+            //   },
+            // },
+          ],
+        },
+      }
     }
   }
 
 
 
-  // events
+
   public chartClicked({
                         event,
                         active,
@@ -155,8 +179,8 @@ export class AppComponent {
 
   adjustInflation() {
     console.log(this.inflationRate);
-
   }
+
 
 
 
