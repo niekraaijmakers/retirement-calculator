@@ -5,9 +5,8 @@ import { BaseChartDirective } from 'ng2-charts';
 import Annotation from 'chartjs-plugin-annotation';
 
 import MockCalculator from "./services/impl/mock-calculator";
-import Calculator, {Results} from "./services/calculator";
+import Calculator, {Results, Variables} from "./services/calculator";
 
-const WITHDRAWAL_RATE = 0.04;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -24,8 +23,17 @@ export class AppComponent {
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  yearlyReturn: number = 8;
-  inflationRate: number = 3;
+  public variables: Variables = {
+    withdrawalRate: 0.04,
+    annualInterest: 6,
+    currentAgePersonA: 30,
+    currentSavings: 10000,
+    inflationRate: 4,
+    lifeExpectancy: 90,
+    monthlySavings: 10000,
+    retirementInYears: 30
+  }
+
 
   constructor(private calculator: MockCalculator) {
 
@@ -79,7 +87,8 @@ export class AppComponent {
   }
 
   public get lineChartOptions(): ChartConfiguration['options'] {
-    const inflation = this.inflationRate;
+    const inflation = this.variables.inflationRate;
+    const widthDrawalRate = this.variables.withdrawalRate;
     return {
       elements: {
         line: {
@@ -107,8 +116,8 @@ export class AppComponent {
                 label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'CHF' }).format(context.parsed.y);
 
                 //todo: correct for inflation
-                label += 'inflatoin ' + inflation;
-                label += ' --- Monthly : ' + Math.floor(context.parsed.y * WITHDRAWAL_RATE / 12);
+                label += 'inflation ' + inflation;
+                label += ' --- Monthly : ' + Math.floor(context.parsed.y * widthDrawalRate / 12);
               }
 
               return label;
@@ -169,22 +178,22 @@ export class AppComponent {
   }
 
 
-  performCalculation() {
-    return this.calculator.calculate([])
+  performCalculation(): Results {
+    return this.calculator.calculate(this.variables)
   }
 
   get totalExpectedRetirementSavings(): number {
-    return this.calculator.calculate([]).totalExpectedRetirementSavings;
+    return this.performCalculation().totalExpectedRetirementSavings;
   }
 
   adjustInflation() {
-    console.log(this.inflationRate);
+    console.log(this.variables.inflationRate);
   }
 
 
 
 
   testSomething(event: Event) {
-    console.log(this.inflationRate);
+    console.log(this.variables.inflationRate);
   }
 }

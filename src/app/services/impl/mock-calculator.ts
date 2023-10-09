@@ -5,7 +5,7 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export default class MockCalculator implements Calculator {
-  calculate(variables: Variables[]): Results {
+  calculate(variables: Variables): Results {
     return {
       totalExpectedRetirementSavings: 200000,
       totalExpectedRetirementIncomeMonthly: 1000,

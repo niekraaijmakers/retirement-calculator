@@ -1,12 +1,15 @@
 export interface Variables {
-  currentAge: number;
-  retirementAge: number;
+  withdrawalRate: number;
+  currentAgePersonA: number;
+  currentAgePersonB?: number;
+  retirementInYears: number;
   lifeExpectancy: number;
   currentSavings: number;
   monthlySavings: number;
   annualInterest: number;
   inflationRate: number;
 }
+
 
 export interface Results {
   totalExpectedRetirementSavings: number;
@@ -18,5 +21,5 @@ export interface Results {
 }
 
 export default interface Calculator {
-  calculate(variables: Variables[]): Results;
+  calculate(variables: Variables): Results;
 }

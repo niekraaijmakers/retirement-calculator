@@ -20,17 +20,29 @@
 <!--    </td>-->
 <!--  </tr>-->
 <!--</table>-->
-
 <div class="container container-fluid">
   <button type="button" class="btn btn-primary" (click)="hideOne()">
     Toggle Yearly Deposits
   </button>
 </div>
-<div class="container container-fluid">
-  <label for="inflationRange" class="form-label" [innerHTML]="'Inflation Rate ' + inflationRate + '%'"></label>
-  <input  type="range" class="form-range" [(ngModel)]="inflationRate"  min="0" max="10" id="inflationRange" (input)="testSomething($event)">
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-12 col-md-6 ">
+      <label for="inflationRange" class="form-label" [innerHTML]="'Inflation Rate ' + variables.inflationRate + '%'"></label>
+      <input  type="range" class="form-range" [(ngModel)]="variables.inflationRate"  min="0" max="10" id="inflationRange" (input)="testSomething($event)">
+    </div>
+    <div class="col-12 col-md-6 ">
+      <label for="yearlyReturnRange" class="form-label" [innerHTML]="'Yearly Return ' + variables.annualInterest + '%'"></label>
+      <input type="range" class="form-range" [(ngModel)]="variables.annualInterest" min="-10" max="20" id="yearlyReturnRange">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 ">
+      <label for="currentAgePersonA" class="form-label" [innerHTML]="'Current Age Person A ' + variables.currentAgePersonA + ' years old'"></label>
+      <input type="number"  [(ngModel)]="variables.currentAgePersonA"  min="16" max="70" id="currentAgePersonA">
+    </div>
+  </div>
 </div>
-<div class="container container-fluid">
-  <label for="yearlyReturnRange" class="form-label" [innerHTML]="'Yearly Return ' + yearlyReturn + '%'">Yearly Return </label>
-  <input type="range" class="form-range" [(ngModel)]="yearlyReturn" min="-10" max="20" id="yearlyReturnRange">
-</div>
+
+
