@@ -28,7 +28,7 @@
       </button>
     </div>
     <div class="col-12 col-md-6 ">
-     
+
     </div>
   </div>
   <div class="row">
@@ -67,6 +67,10 @@
     <div class="col-12 col-md-6 ">
       <label for="retirementInYearsRange" class="form-label" [innerHTML]="'Start retirement in years:  ' + variables.retirementInYears + ' years&nbsp;&nbsp;'"></label>
       <input type="range" class="form-range" [(ngModel)]="variables.retirementInYears" min="10" max="50" id="retirementInYearsRange">
+    </div>
+    <div class="col-12 col-md-6 ">
+      <label for="retirementInYearsRange" class="form-label" [innerHTML]="'Retirement home house budget  ' + variables.retirementHomeHousePurchase + ' CHF&nbsp;&nbsp;'"></label>
+      <input type="range" class="form-range" [(ngModel)]="variables.retirementHomeHousePurchase" min="0" max="999000000" id="retirementHomeHousePurchase">
     </div>
   </div>
 </div>

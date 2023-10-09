@@ -3,6 +3,7 @@ export interface Variables {
   currentAgePersonA: number;
   currentAgePersonB?: number;
   retirementInYears: number;
+  retirementHomeHousePurchase: number;
   lifeExpectancy: number;
   currentSavings: number;
   monthlySavings: number;

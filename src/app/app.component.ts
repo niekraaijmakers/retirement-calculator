@@ -31,7 +31,8 @@ export class AppComponent {
     inflationRate: 4,
     lifeExpectancy: 90,
     monthlySavings: 10000,
-    retirementInYears: 30
+    retirementInYears: 30,
+    retirementHomeHousePurchase: 300000,
   }
 
 
