@@ -27,7 +27,7 @@ export class AppComponent {
     withdrawalRate: 0.04,
     annualInterest: 6,
     currentAgePersonA: 30,
-    currentSavings: 10000,
+    currentSavings: 100000,
     inflationRate: 4,
     lifeExpectancy: 90,
     monthlySavings: 10000,

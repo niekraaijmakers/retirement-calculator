@@ -5,3 +5,13 @@ $prefix: "mo-";
 
 // Then import Bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+
+.container .row [class^="col"] {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  background-color: $red-100;
+  border-color: $red-200 ;
+  border-width: 1px;
+  border-style: solid;
+}
