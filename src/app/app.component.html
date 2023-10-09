@@ -21,43 +21,43 @@
   <div class="row">
     <div class="col-12 col-md-6 ">
       <label for="inflationRange" class="form-label" [innerHTML]="'Expected Average Inflation Rate ' + variables.inflationRate + '%&nbsp;&nbsp;'"></label>
-      <input  type="range" class="form-range" [(ngModel)]="variables.inflationRate"  min="-10" max="25" id="inflationRange" (input)="testSomething($event)">
+      <input  type="range" class="form-range" [(ngModel)]="variables.inflationRate"  min="-10" max="25" id="inflationRange" (input)="triggerRecalculate($event)">
     </div>
     <div class="col-12 col-md-6 ">
       <label for="yearlyReturnRange" class="form-label" [innerHTML]="'Expected Average Yearly Return ' + variables.annualInterest + '%&nbsp;&nbsp;'"></label>
-      <input type="range" class="form-range" [(ngModel)]="variables.annualInterest" min="-10" max="20" id="yearlyReturnRange">
+      <input type="range" class="form-range" [(ngModel)]="variables.annualInterest" min="-10" max="20" id="yearlyReturnRange" (input)="triggerRecalculate($event)">
     </div>
   </div>
   <div class="row">
     <div class="col-12 col-md-6">
       <label for="currentAgePersonA" class="form-label">Current Age:&nbsp;&nbsp;</label>
-      <input type="number"  [(ngModel)]="variables.currentAgePersonA"  min="16" max="70" id="currentAgePersonA"> Years Old
+      <input type="number"  [(ngModel)]="variables.currentAgePersonA"  min="16" max="70" id="currentAgePersonA" (input)="triggerRecalculate($event)"> Years Old
     </div>
     <div class="col-12 col-md-6">
       <label for="currentSavings" class="form-label">Current savings:&nbsp;&nbsp;</label>
-      <input type="number"  [(ngModel)]="variables.currentSavings"  min="-999999" max="99999" id="currentSavings"> CHF
+      <input type="number"  [(ngModel)]="variables.currentSavings"  min="-999999" max="99999" id="currentSavings" (input)="triggerRecalculate($event)"> CHF
     </div>
 
   </div>
   <div class="row">
     <div class="col-12 col-md-6 ">
       <label for="monthlySavings" class="form-label">Current Monthly savings:&nbsp;&nbsp;</label>
-      <input type="number"  [(ngModel)]="variables.monthlySavings"  min="1" max="10000000" id="monthlySavings"> CHF
+      <input type="number"  [(ngModel)]="variables.monthlySavings"  min="1" max="10000000" id="monthlySavings" (input)="triggerRecalculate($event)"> CHF
     </div>
     <div class="col-12 col-md-6 ">
       <label for="lifeExpectancyRange" class="form-label" [innerHTML]="'Life expectancy:  ' + variables.lifeExpectancy + ' years&nbsp;&nbsp;'"></label>
-      <input type="range" class="form-range" [(ngModel)]="variables.lifeExpectancy" min="70" max="110" id="lifeExpectancyRange">
+      <input type="range" class="form-range" [(ngModel)]="variables.lifeExpectancy" min="70" max="110" id="lifeExpectancyRange" (input)="triggerRecalculate($event)">
     </div>
   </div>
 
   <div class="row">
     <div class="col-12 col-md-6 ">
       <label for="retirementInYearsRange" class="form-label" [innerHTML]="'Start retirement in years:  ' + variables.retirementInYears + ' years&nbsp;&nbsp;'"></label>
-      <input type="range" class="form-range" [(ngModel)]="variables.retirementInYears" min="10" max="50" id="retirementInYearsRange">
+      <input type="range" class="form-range" [(ngModel)]="variables.retirementInYears" min="10" max="50" id="retirementInYearsRange" (input)="triggerRecalculate($event)">
     </div>
     <div class="col-12 col-md-6 ">
       <label for="retirementInYearsRange" class="form-label" [innerHTML]="'Retirement home house budget  ' + variables.retirementHomeHousePurchase + ' CHF&nbsp;&nbsp;'"></label>
-      <input type="range" class="form-range" [(ngModel)]="variables.retirementHomeHousePurchase" min="0" max="1000000" id="retirementHomeHousePurchase">
+      <input type="range" class="form-range" [(ngModel)]="variables.retirementHomeHousePurchase" min="0" max="1000000" id="retirementHomeHousePurchase" (input)="triggerRecalculate($event)">
     </div>
   </div>
 </div>

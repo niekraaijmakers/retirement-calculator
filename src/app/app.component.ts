@@ -183,7 +183,18 @@ export class AppComponent {
     console.log(this.variables.inflationRate);
   }
 
-  testSomething(event: Event) {
+  triggerRecalculate(event: Event) {
     console.log(this.variables.inflationRate);
+    this.lineChartData.datasets[0].data = [0,
+      10000,
+      20500,
+      31000,
+      21500,
+      12000,
+      32200,
+      22300,
+      22400,
+      2400];
   }
+
 }
