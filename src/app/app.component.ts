@@ -108,8 +108,7 @@ export class AppComponent {
               if (context.parsed.y !== null) {
                 label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'CHF' }).format(context.parsed.y);
 
-                //todo: correct for inflation
-                label += 'inflation ' + inflation;
+                //TODO: correct for inflation
                 label += ' --- Monthly : ' + Math.floor(context.parsed.y * widthDrawalRate / 12);
               }
 
