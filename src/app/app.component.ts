@@ -6,6 +6,8 @@ import Annotation from 'chartjs-plugin-annotation';
 
 import MockCalculator from "./services/impl/mock-calculator";
 import Calculator, {Results, Variables} from "./services/calculator";
+import PersistedVariablesImpl from "./services/impl/persistedvars";
+
 
 @Component({
   selector: 'app-root',
@@ -23,17 +25,7 @@ export class AppComponent {
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  public variables: Variables = {
-    withdrawalRate: 0.04,
-    annualInterest: 6,
-    currentAgePersonA: 30,
-    currentSavings: 100000,
-    inflationRate: 4,
-    lifeExpectancy: 90,
-    monthlySavings: 10000,
-    retirementInYears: 30,
-    retirementHomeHousePurchase: 300000,
-  }
+  public variables= new PersistedVariablesImpl();
 
 
   constructor(private calculator: MockCalculator) {
@@ -190,9 +182,6 @@ export class AppComponent {
   adjustInflation() {
     console.log(this.variables.inflationRate);
   }
-
-
-
 
   testSomething(event: Event) {
     console.log(this.variables.inflationRate);
