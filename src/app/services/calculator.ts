@@ -1,14 +1,24 @@
+export interface Person {
+  currentAge: number;
+  lifeExpectancy: number;
+  monthlySavings: number;
+  increaseProductivityFactor: number;
+  decreaseProductivityFactor: number;
+}
+
+export interface PersonVector {
+  personA: Person;
+  personB: Person;
+}
 export interface Variables {
+  peakProductivityAge: number;
   withdrawalRate: number;
-  currentAgePersonA: number;
-  currentAgePersonB?: number;
   retirementInYears: number;
   retirementHomeHousePurchase: number;
-  lifeExpectancy: number;
   currentSavings: number;
-  monthlySavings: number;
   annualInterest: number;
   inflationRate: number;
+  persons: PersonVector
 }
 
 

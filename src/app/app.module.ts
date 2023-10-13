@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgChartsModule, NgChartsConfiguration } from 'ng2-charts';
 import { AppComponent } from './app.component';
-import MockCalculator from "./services/impl/mock-calculator";
 import {FormsModule} from "@angular/forms";
+import CalculatorImpl from "./services/impl/calculator";
 @NgModule({
   declarations: [
     AppComponent
@@ -15,7 +15,7 @@ import {FormsModule} from "@angular/forms";
     FormsModule
   ],
   providers: [
-    MockCalculator,
+    CalculatorImpl,
     { provide: NgChartsConfiguration, useValue: { generateColors: true }}
   ],
   bootstrap: [AppComponent]
