@@ -173,7 +173,7 @@ export class AppComponent {
   performCalculation(): Results {
     return this.calculator.calculate(this.variables)
   }
-  
+
   triggerRecalculate(event: Event) {
     console.log(this.variables.inflationRate);
     this.lineChartData.datasets[0].data = [0,
