@@ -173,15 +173,7 @@ export class AppComponent {
   performCalculation(): Results {
     return this.calculator.calculate(this.variables)
   }
-
-  get totalExpectedRetirementSavings(): number {
-    return this.performCalculation().totalExpectedRetirementSavings;
-  }
-
-  adjustInflation() {
-    console.log(this.variables.inflationRate);
-  }
-
+  
   triggerRecalculate(event: Event) {
     console.log(this.variables.inflationRate);
     this.lineChartData.datasets[0].data = [0,
