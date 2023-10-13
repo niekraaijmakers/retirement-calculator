@@ -8,6 +8,8 @@ const DEFAULT_VARIABLES: Variables = {
   inflationRate: 4,
   retirementInYears: 30,
   retirementHomeHousePurchase: 300000,
+  monthlyDependantCosts: 1500,
+  expectedDependantYearsToLive: 40,
   persons: {
     personA: {
       currentAge: 30,
@@ -113,6 +115,8 @@ export default class PersistedVariablesImpl implements Variables{
   private _retirementInYears: number;
   private _withdrawalRate: number;
   private _peakProductivityAge: number;
+  private _monthlyDependantCosts: number;
+  private _expectedDependantYearsToLive: number;
 
   constructor(){
     this._annualInterest = getOrDef('annualInterest', DEFAULT_VARIABLES.annualInterest);
@@ -122,6 +126,9 @@ export default class PersistedVariablesImpl implements Variables{
     this._retirementInYears = getOrDef('retirementInYears', DEFAULT_VARIABLES.retirementInYears);
     this._withdrawalRate = getOrDef('withdrawalRate', DEFAULT_VARIABLES.withdrawalRate);
     this._peakProductivityAge = getOrDef('peakProductivityAge', DEFAULT_VARIABLES.peakProductivityAge);
+    this._monthlyDependantCosts = getOrDef('monthlyDependantCosts', DEFAULT_VARIABLES.monthlyDependantCosts);
+    this._expectedDependantYearsToLive = getOrDef('expectedDependantYearsToLive', DEFAULT_VARIABLES.expectedDependantYearsToLive);
+
     this._persons = {
       personA: new PersonVariablesImpl("personA"),
       personB: new PersonVariablesImpl("personB"),
@@ -195,5 +202,24 @@ export default class PersistedVariablesImpl implements Variables{
   set peakProductivityAge(value: number) {
     store('peakProductivityAge', value);
     this._peakProductivityAge = value;
+  }
+
+
+  get monthlyDependantCosts(): number {
+    return this._monthlyDependantCosts;
+  }
+
+  set monthlyDependantCosts(value: number) {
+    store('monthlyDependantCosts', value);
+    this._monthlyDependantCosts = value;
+  }
+
+  get expectedDependantYearsToLive(): number {
+    return this._expectedDependantYearsToLive;
+  }
+
+  set expectedDependantYearsToLive(value: number) {
+    store('expectedDependantYearsToLive', value);
+    this._expectedDependantYearsToLive = value;
   }
 }
