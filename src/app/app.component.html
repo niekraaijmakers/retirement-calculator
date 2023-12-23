@@ -74,8 +74,8 @@
   </div>
   <div class="row">
     <div class="col-12 col-md-6 ">
-      <label for="decreaseProductivityFactorPersonA" class="form-label" [innerHTML]="'Decrease productivity factor  ' + variables.persons.personA.decreaseProductivityFactor + ' power&nbsp;&nbsp;'"></label>
-      <input type="range" class="form-range" [(ngModel)]="variables.persons.personA.decreaseProductivityFactor" min="0" max="3" step="0.01" id="decreaseProductivityFactorPersonA" (input)="triggerRecalculate($event)">
+      <label for="decreaseProductivityFactorPersonA" class="form-label" [innerHTML]="'Decrease productivity factor  ' + variables.persons.personA.decreaseProductivityFactor + ' %&nbsp;&nbsp;'"></label>
+      <input type="range" class="form-range" [(ngModel)]="variables.persons.personA.decreaseProductivityFactor" min="0" max="5" step="0.01" id="decreaseProductivityFactorPersonA" (input)="triggerRecalculate($event)">
     </div>
   </div>
 
@@ -97,14 +97,14 @@
       <input type="range" class="form-range" [(ngModel)]="variables.persons.personB.lifeExpectancy" min="70" max="110" id="lifeExpectancyPersonB" (input)="triggerRecalculate($event)">
     </div>
     <div class="col-12 col-md-6 ">
-      <label for="increaseProductivityFactorPersonB" class="form-label" [innerHTML]="'Increase productivity factor  ' + variables.persons.personB.increaseProductivityFactor + ' power&nbsp;&nbsp;'"></label>
-      <input type="range" class="form-range" [(ngModel)]="variables.persons.personB.increaseProductivityFactor"  step="0.01" min="0" max="3" id="increaseProductivityFactorPersonB" (input)="triggerRecalculate($event)">
+      <label for="increaseProductivityFactorPersonB" class="form-label" [innerHTML]="'Increase productivity factor  ' + variables.persons.personB.increaseProductivityFactor + ' %&nbsp;&nbsp;'"></label>
+      <input type="range" class="form-range" [(ngModel)]="variables.persons.personB.increaseProductivityFactor"  step="0.01" min="0" max="5" id="increaseProductivityFactorPersonB" (input)="triggerRecalculate($event)">
     </div>
   </div>
   <div class="row">
     <div class="col-12 col-md-6 ">
-      <label for="decreaseProductivityFactorPersonB" class="form-label" [innerHTML]="'Decrease productivity factor  ' + variables.persons.personB.decreaseProductivityFactor + ' power&nbsp;&nbsp;'"></label>
-      <input type="range" class="form-range" [(ngModel)]="variables.persons.personB.decreaseProductivityFactor" step="0.01" min="0" max="3" id="decreaseProductivityFactorPersonB" (input)="triggerRecalculate($event)">
+      <label for="decreaseProductivityFactorPersonB" class="form-label" [innerHTML]="'Decrease productivity factor  ' + variables.persons.personB.decreaseProductivityFactor + ' %&nbsp;&nbsp;'"></label>
+      <input type="range" class="form-range" [(ngModel)]="variables.persons.personB.decreaseProductivityFactor" step="0.01" min="0" max="5" id="decreaseProductivityFactorPersonB" (input)="triggerRecalculate($event)">
     </div>
   </div>
 
