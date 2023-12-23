@@ -19,6 +19,7 @@ export interface Variables {
   annualInterest: number;
   inflationRate: number;
   monthlyDependantCosts: number;
+  monthlyDependantIncreaseFactor: number;
   expectedDependantYearsToLive: number;
   persons: PersonVector
 }

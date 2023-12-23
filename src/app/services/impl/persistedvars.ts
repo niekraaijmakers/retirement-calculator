@@ -9,6 +9,7 @@ const DEFAULT_VARIABLES: Variables = {
   retirementInYears: 30,
   retirementHomeHousePurchase: 300000,
   monthlyDependantCosts: 1500,
+  monthlyDependantIncreaseFactor: 2,
   expectedDependantYearsToLive: 40,
   persons: {
     personA: {
@@ -117,6 +118,7 @@ export default class PersistedVariablesImpl implements Variables{
   private _peakProductivityAge: number;
   private _monthlyDependantCosts: number;
   private _expectedDependantYearsToLive: number;
+  private _monthlyDependantIncreaseFactor: number;
 
   constructor(){
     this._annualInterest = getOrDef('annualInterest', DEFAULT_VARIABLES.annualInterest);
@@ -128,6 +130,7 @@ export default class PersistedVariablesImpl implements Variables{
     this._peakProductivityAge = getOrDef('peakProductivityAge', DEFAULT_VARIABLES.peakProductivityAge);
     this._monthlyDependantCosts = getOrDef('monthlyDependantCosts', DEFAULT_VARIABLES.monthlyDependantCosts);
     this._expectedDependantYearsToLive = getOrDef('expectedDependantYearsToLive', DEFAULT_VARIABLES.expectedDependantYearsToLive);
+    this._monthlyDependantIncreaseFactor = getOrDef('monthlyDependantIncreaseFactor', DEFAULT_VARIABLES.monthlyDependantIncreaseFactor);
 
     this._persons = {
       personA: new PersonVariablesImpl("personA"),
@@ -221,5 +224,13 @@ export default class PersistedVariablesImpl implements Variables{
   set expectedDependantYearsToLive(value: number) {
     store('expectedDependantYearsToLive', value);
     this._expectedDependantYearsToLive = value;
+  }
+
+  get monthlyDependantIncreaseFactor(): number {
+    return this._monthlyDependantIncreaseFactor;
+  }
+
+  set monthlyDependantIncreaseFactor(value: number) {
+    this._monthlyDependantIncreaseFactor = value;
   }
 }

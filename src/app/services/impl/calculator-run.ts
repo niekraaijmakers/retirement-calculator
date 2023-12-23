@@ -70,7 +70,8 @@ export default class CalculatorRunImpl {
 
       if(expectToBeAlive) {
         const factor = Math.pow(1 + (this.variables.inflationRate / 100), year);
-        return this.variables.monthlyDependantCosts * 12 * factor;
+        const secondaryFactor = Math.pow(1 + (this.variables.monthlyDependantIncreaseFactor / 100), year);
+        return this.variables.monthlyDependantCosts * 12 * factor * secondaryFactor;
       }else{
         return 0;
       }

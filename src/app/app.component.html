@@ -52,6 +52,22 @@
     </div>
   </div>
 
+  <h1>Dependants</h1>
+  <div class="row">
+    <div class="col-12 col-md-6 ">
+      <label for="monthlyDependantCosts" class="form-label" [innerHTML]="'Monthly dependant costs  ' + variables.monthlyDependantCosts + ' CHF&nbsp;&nbsp;'"></label>
+      <input type="range" class="form-range" [(ngModel)]="variables.monthlyDependantCosts" min="1" max="5000" id="monthlyDependantCosts" (input)="triggerRecalculate($event)">
+    </div>
+    <div class="col-12 col-md-6">
+      <label for="expectedDependantYearsToLive" class="form-label" [innerHTML]="'Expected dependants to live  ' + variables.expectedDependantYearsToLive + ' years&nbsp;&nbsp;'"></label>
+      <input type="range" class="form-range" [(ngModel)]="variables.expectedDependantYearsToLive" step="1" min="10" max="50" id="expectedDependantYearsToLive" (input)="triggerRecalculate($event)">
+    </div>
+    <div class="col-12 col-md-6 ">
+      <label for="monthlyDependantIncreaseFactor" class="form-label" [innerHTML]="'Yearly dependant increase factor beyond inflation ' + variables.monthlyDependantIncreaseFactor + ' %&nbsp;&nbsp;'"></label>
+      <input type="range" class="form-range" [(ngModel)]="variables.monthlyDependantIncreaseFactor" step="0.1" min="0" max="20" id="monthlyDependantIncreaseFactor" (input)="triggerRecalculate($event)">
+    </div>
+  </div>
+
   <h1>Person A</h1>
   <div class="row">
     <div class="col-12 col-md-6 ">
@@ -109,17 +125,6 @@
     </div>
   </div>
 
-  <h1>Dependants</h1>
-  <div class="row">
-    <div class="col-12 col-md-6 ">
-      <label for="monthlyDependantCosts" class="form-label" [innerHTML]="'Monthly dependant costs  ' + variables.monthlyDependantCosts + ' CHF&nbsp;&nbsp;'"></label>
-      <input type="range" class="form-range" [(ngModel)]="variables.monthlyDependantCosts" min="1" max="5000" id="monthlyDependantCosts" (input)="triggerRecalculate($event)">
-    </div>
-    <div class="col-12 col-md-6">
-      <label for="expectedDependantYearsToLive" class="form-label" [innerHTML]="'Expected dependants to live  ' + variables.expectedDependantYearsToLive + ' years&nbsp;&nbsp;'"></label>
-      <input type="range" class="form-range" [(ngModel)]="variables.expectedDependantYearsToLive" step="1" min="10" max="50" id="expectedDependantYearsToLive" (input)="triggerRecalculate($event)">
-    </div>
-  </div>
 
 </div>
 
