@@ -121,7 +121,7 @@ export class AppComponent {
               if (context.parsed.y !== null) {
                 label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'CHF' }).format(context.parsed.y);
                 const remainder = context.parsed.y - houseBudget;
-                label += ' --- Monthly : ' + Math.floor(remainder * widthDrawalRate / 12);
+                label += ' --- Monthly : ' + Math.floor(remainder * (widthDrawalRate / 100 / 12));
               }
 
               return label;

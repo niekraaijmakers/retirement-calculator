@@ -47,12 +47,12 @@ export default class CalculatorRunImpl {
       let yearlyDepositPersonB = this.yearlyPersonDepositedSavings.personB[i-1] || this.variables.persons.personB.monthlySavings * 12;
       yearlyDepositPersonB *= this.getYearlyProductivityFactor(this.variables.persons.personB, i);
 
-      const yearlyDeposit = yearlyDepositPersonA + yearlyDepositPersonB - this.calculateYearlyDependantCosts(i);
+      const yearlyDeposit = Math.round(yearlyDepositPersonA + yearlyDepositPersonB - this.calculateYearlyDependantCosts(i));
 
       this.results.totalDepositedSavings.push((this.results.totalDepositedSavings[i-1] || 0 )  + yearlyDeposit);
 
       if(this.results.totalAccumulatedSavings[i-1]){
-        this.results.totalAccumulatedSavings.push(Math.round( this.getInterestRateFactor(i) * (this.results.totalAccumulatedSavings[i-1] + yearlyDeposit) ));
+        this.results.totalAccumulatedSavings.push(Math.round( this.getInterestRateFactor() * (this.results.totalAccumulatedSavings[i-1] + yearlyDeposit) ));
         this.results.yearlyDepositedSavings.push(yearlyDeposit)
       }else{
         this.results.totalAccumulatedSavings.push(this.variables.currentSavings + yearlyDeposit);
@@ -76,9 +76,8 @@ export default class CalculatorRunImpl {
       }
   }
 
-  private getInterestRateFactor(year:number): number {
-    const base = 1 + ( (this.variables.annualInterest - this.variables.inflationRate ) / 100 );
-    return Math.pow(base, year);
+  private getInterestRateFactor(): number {
+    return ( 1 + (this.variables.annualInterest - this.variables.inflationRate ) / 100 );
   }
 
   private getYearlyProductivityFactor(person:Person, year: number) {
