@@ -94,6 +94,7 @@ export class AppComponent {
 
   public get lineChartOptions(): ChartConfiguration['options'] {
     const widthDrawalRate = this.variables.withdrawalRate;
+    const houseBudget = this.variables.retirementHomeHousePurchase;
     return {
       elements: {
         line: {
@@ -119,7 +120,8 @@ export class AppComponent {
               }
               if (context.parsed.y !== null) {
                 label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'CHF' }).format(context.parsed.y);
-                label += ' --- Monthly : ' + Math.floor(context.parsed.y * widthDrawalRate / 12);
+                const remainder = context.parsed.y - houseBudget;
+                label += ' --- Monthly : ' + Math.floor(remainder * widthDrawalRate / 12);
               }
 
               return label;

@@ -52,10 +52,10 @@ export default class CalculatorRunImpl {
       this.results.totalDepositedSavings.push((this.results.totalDepositedSavings[i-1] || 0 )  + yearlyDeposit);
 
       if(this.results.totalAccumulatedSavings[i-1]){
-        this.results.totalAccumulatedSavings.push(Math.round( this.getInterestRateFactor() * (this.results.totalAccumulatedSavings[i-1] + yearlyDeposit) ));
+        this.results.totalAccumulatedSavings.push(Math.round( this.getInterestRateFactor(i) * (this.results.totalAccumulatedSavings[i-1] + yearlyDeposit) ));
         this.results.yearlyDepositedSavings.push(yearlyDeposit)
       }else{
-        this.results.totalAccumulatedSavings.push(yearlyDeposit);
+        this.results.totalAccumulatedSavings.push(this.variables.currentSavings + yearlyDeposit);
         this.results.yearlyDepositedSavings.push(yearlyDeposit);
       }
     }
@@ -76,8 +76,9 @@ export default class CalculatorRunImpl {
       }
   }
 
-  private getInterestRateFactor(): number {
-    return 1 + ( (this.variables.annualInterest - this.variables.inflationRate ) / 100 );
+  private getInterestRateFactor(year:number): number {
+    const base = 1 + ( (this.variables.annualInterest - this.variables.inflationRate ) / 100 );
+    return Math.pow(base, year);
   }
 
   private getYearlyProductivityFactor(person:Person, year: number) {
