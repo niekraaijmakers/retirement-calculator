@@ -68,8 +68,8 @@
       <input type="range" class="form-range" [(ngModel)]="variables.persons.personA.lifeExpectancy" min="70" max="110" id="lifeExpectancyPersonA" (input)="triggerRecalculate($event)">
     </div>
     <div class="col-12 col-md-6 ">
-      <label for="increaseProductivityFactorPersonA" class="form-label" [innerHTML]="'Increase productivity factor  ' + variables.persons.personA.increaseProductivityFactor + ' power&nbsp;&nbsp;'"></label>
-      <input type="range" class="form-range" [(ngModel)]="variables.persons.personA.increaseProductivityFactor"  step="0.01" min="0" max="3" id="increaseProductivityFactorPersonA" (input)="triggerRecalculate($event)">
+      <label for="increaseProductivityFactorPersonA" class="form-label" [innerHTML]="'Increase productivity factor  ' + variables.persons.personA.increaseProductivityFactor + ' %&nbsp;&nbsp;'"></label>
+      <input type="range" class="form-range" [(ngModel)]="variables.persons.personA.increaseProductivityFactor"  step="0.01" min="0" max="5" id="increaseProductivityFactorPersonA" (input)="triggerRecalculate($event)">
     </div>
   </div>
   <div class="row">
