@@ -47,7 +47,7 @@ export default class CalculatorRunImpl {
       let yearlyDepositPersonB = this.yearlyPersonDepositedSavings.personB[i-1] || this.variables.persons.personB.monthlySavings * 12;
       yearlyDepositPersonB *= this.getYearlyProductivityFactor(this.variables.persons.personB, i);
 
-      const yearlyDeposit = yearlyDepositPersonA + yearlyDepositPersonB;
+      const yearlyDeposit = yearlyDepositPersonA + yearlyDepositPersonB - this.calculateYearlyDependantCosts(i);
 
       this.results.totalDepositedSavings.push((this.results.totalDepositedSavings[i-1] || 0 )  + yearlyDeposit);
 
@@ -63,6 +63,17 @@ export default class CalculatorRunImpl {
     this.results.maximumYValue = Math.max(...this.results.totalAccumulatedSavings);
 
     return this.results;
+  }
+
+  private calculateYearlyDependantCosts(year: number): number {
+      const expectToBeAlive = year < this.variables.expectedDependantYearsToLive;
+
+      if(expectToBeAlive) {
+        const factor = Math.pow(1 + (this.variables.inflationRate / 100), year);
+        return this.variables.monthlyDependantCosts * 12 * factor;
+      }else{
+        return 0;
+      }
   }
 
   private getInterestRateFactor(): number {
