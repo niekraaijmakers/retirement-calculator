@@ -31,6 +31,7 @@ export interface Results {
   yearlyDepositedSavings:    number[];
   totalAccumulatedSavings:   number[];
   totalDepositedSavings:     number[];
+  maximumYValue: number;
 }
 
 export default interface Calculator {

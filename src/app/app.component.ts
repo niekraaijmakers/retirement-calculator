@@ -4,9 +4,9 @@ import { BaseChartDirective } from 'ng2-charts';
 
 import Annotation from 'chartjs-plugin-annotation';
 
-import MockCalculator from "./services/impl/mock-calculator";
-import Calculator, {Results, Variables} from "./services/calculator";
+import {Results} from "./services/calculator";
 import PersistedVariablesImpl from "./services/impl/persistedvars";
+import CalculatorImpl from "./services/impl/calculator";
 
 
 @Component({
@@ -28,7 +28,7 @@ export class AppComponent {
   public variables= new PersistedVariablesImpl();
 
 
-  constructor(private calculator: MockCalculator) {
+  constructor(private calculator: CalculatorImpl) {
 
     this.results = this.performCalculation();
     Chart.register(Annotation);
@@ -75,12 +75,24 @@ export class AppComponent {
           fill: 'origin',
         },
       ],
-      labels: [2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033],
+      labels: this.lineChartLabels,
     }
   }
 
+  private get lineChartLabels():number[]{
+
+    const currentYear = new Date().getFullYear();
+
+    const labels = [];
+
+    for(let i = 0; i < this.variables.retirementInYears; i++){
+      labels.push(currentYear + i);
+    }
+
+    return labels;
+  }
+
   public get lineChartOptions(): ChartConfiguration['options'] {
-    const inflation = this.variables.inflationRate;
     const widthDrawalRate = this.variables.withdrawalRate;
     return {
       elements: {
@@ -91,7 +103,7 @@ export class AppComponent {
       scales: {
         // We use this empty structure as a placeholder for dynamic theming.
         y: {
-          position: 'left',
+          position: 'left'
         },
       },
 
@@ -107,8 +119,6 @@ export class AppComponent {
               }
               if (context.parsed.y !== null) {
                 label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'CHF' }).format(context.parsed.y);
-
-                //TODO: correct for inflation
                 label += ' --- Monthly : ' + Math.floor(context.parsed.y * widthDrawalRate / 12);
               }
 
@@ -175,17 +185,8 @@ export class AppComponent {
   }
 
   triggerRecalculate(event: Event) {
-    console.log(this.variables.inflationRate);
-    this.lineChartData.datasets[0].data = [0,
-      10000,
-      20500,
-      31000,
-      21500,
-      12000,
-      32200,
-      22300,
-      22400,
-      2400];
+    this.results = this.performCalculation();
+    this.lineChartData = this.calcLineChartData();
   }
 
 }
